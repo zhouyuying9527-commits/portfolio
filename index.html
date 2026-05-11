@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>周钰滢 - AI产品经理</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet"/>
+<script>
+function advanceSlide(phone) {
+  var slides = phone.querySelectorAll('.phone-slide');
+  var dots = phone.querySelectorAll('.phone-dot');
+  var currentIdx = -1;
+  for (var i = 0; i < slides.length; i++) {
+    if (slides[i].classList.contains('active')) { currentIdx = i; break; }
+  }
+  if (currentIdx === -1) return;
+  // Toggle: if on home (0), go to content (1); if on content, go back to home (0)
+  var nextIdx = currentIdx === 0 ? 1 : 0;
+  slides[currentIdx].classList.remove('active');
+  slides[nextIdx].classList.add('active');
+  if (dots[currentIdx]) dots[currentIdx].classList.remove('active');
+  if (dots[nextIdx]) dots[nextIdx].classList.add('active');
+}
+</script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  color: #E0E0E0;
+  background: #08090F;
+  overflow-x: hidden;
+}
+
+/* Custom cursor - disabled */
+
+/* Scroll progress bar */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, #6EC5FF, #A78BFA, #6EC5FF); z-index: 999; transition: width 0.1s; }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(8,9,15,0.8);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.nav-brand {
+  font-size: 15px; font-weight: 600;
+  color: #fff; letter-spacing: 0.5px;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  text-decoration: none; transition: all 0.3s;
+  position: relative; padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: #6EC5FF;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
+
+/* ===== PARTICLES CANVAS ===== */
+#particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ===== SECTION 1: INTRO ===== */
+.intro {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 0 80px 60px;
+  max-width: 1200px; margin: 0 auto;
+  position: relative; z-index: 1;
+  overflow: visible;
+}
+.intro-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  min-height: calc(100vh - 200px);
+}
+.intro-text {
+  flex: 0 0 auto;
+  max-width: 60%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Typewriter text */
+.intro-greeting {
+  font-size: 14px; color: rgba(255,255,255,0.35);
+  letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 16px;
+  animation: fadeSlideUp 0.8s ease 0.2s both;
+}
+/* Name - dynamic fade-in with energy */
+.intro-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(72px, 7vw, 110px);
+  font-weight: 600; color: #fff;
+  line-height: 1.1; margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+}
+.intro-name .char {
+  display: inline-block;
+  opacity: 0;
+  animation: nameEnergeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.intro-name .char:nth-child(1) { animation-delay: 0.3s; }
+.intro-name .char:nth-child(2) { animation-delay: 0.45s; }
+.intro-name .char:nth-child(3) { animation-delay: 0.6s; }
+@keyframes nameEnergeIn {
+  0% { opacity: 0; transform: translateY(30px) scale(0.6) rotateX(-40deg); filter: blur(8px); }
+  60% { opacity: 1; transform: translateY(-8px) scale(1.08) rotateX(5deg); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); filter: blur(0); }
+}
+/* Glow sweep effect */
+.intro-name::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, transparent, #6EC5FF, #A78BFA, transparent);
+  animation: glowSweep 1.5s ease 0.8s both;
+}
+@keyframes glowSweep {
+  0% { transform: scaleX(0); transform-origin: left; opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: scaleX(1); transform-origin: left; opacity: 0.6; }
+}
+.intro-title {
+  font-size: 22px; font-weight: 500;
+  margin-bottom: 36px;
+  background: linear-gradient(135deg, #6EC5FF 0%, #A78BFA 50%, #6EC5FF 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 3s linear infinite, fadeSlideUp 0.8s ease 0.6s both;
+}
+@keyframes gradientFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.intro-contact {
+  display: flex; flex-direction: column; gap: 18px;
+  animation: fadeSlideUp 0.8s ease 0.8s both;
+}
+.contact-item {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: rgba(255,255,255,0.5);
+  transition: all 0.3s;
+}
+.contact-item:hover { color: #fff; transform: translateX(6px); }
+.contact-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(110,197,255,0.06);
+  border: 1px solid rgba(110,197,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+.contact-item:hover .contact-icon {
+  background: rgba(110,197,255,0.12);
+  border-color: rgba(110,197,255,0.3);
+  box-shadow: 0 0 20px rgba(110,197,255,0.15);
+}
+.contact-icon svg { width: 15px; height: 15px; stroke: #6EC5FF; fill: none; stroke-width: 2; }
+
+/* Photo — rectangular with blur glow border, only in intro section */
+.intro-photo-wrap {
+  position: relative;
+  width: 300px;
+  height: 380px;
+  flex-shrink: 0;
+  margin-left: 140px;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.8s both;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+.intro-photo-wrap:hover {
+  transform: scale(1.05);
+}
+.intro-photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 3px solid rgba(110,197,255,0.3);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.intro-photo-wrap:hover img {
+  border-color: rgba(110,197,255,0.6);
+  box-shadow: 0 0 40px rgba(110,197,255,0.25), 0 0 80px rgba(110,197,255,0.1);
+}
+/* Blur glow border effect */
+.intro-photo-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(110,197,255,0.5), rgba(167,139,250,0.35), rgba(110,197,255,0.5));
+  z-index: 0;
+  filter: blur(12px);
+  opacity: 0.7;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+.intro-photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(110,197,255,0.08), transparent 60%);
+  z-index: 2;
+  pointer-events: none;
+}
+@keyframes glowPulse {
+  0%,100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.02); }
+}
+
+/* ===== SECTION 2: TIMELINE ===== */
+.timeline-section {
+  padding: 80px 0;
+  position: relative; z-index: 1;
+  overflow: hidden;
+}
+.bg-text {
+  position: absolute;
+  font-size: clamp(90px, 14vw, 200px);
+  font-weight: 800;
+  color: rgba(255,255,255,0.015);
+  text-transform: uppercase;
+  letter-spacing: -6px;
+  white-space: nowrap;
+  user-select: none; pointer-events: none;
+}
+.bg-text.left { left: -30px; top: 60px; animation: bgFloat 20s ease-in-out infinite; }
+.bg-text.right { right: -30px; bottom: 100px; animation: bgFloat 25s ease-in-out infinite reverse; }
+@keyframes bgFloat {
+  0%,100% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+}
+
+.timeline-header { text-align: center; margin-bottom: 100px; }
+.timeline-header h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 40px; font-weight: 600; color: #fff;
+}
+.timeline-header p {
+  font-size: 14px; color: rgba(255,255,255,0.35);
+  margin-top: 12px; letter-spacing: 2px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto; padding: 0 40px;
+}
+.timeline-line {
+  position: absolute;
+  left: 50%; top: 0; bottom: 0;
+  width: 2px; transform: translateX(-50%);
+  background: linear-gradient(to bottom,
+    transparent 0%, rgba(110,197,255,0.3) 5%,
+    rgba(110,197,255,0.3) 95%, transparent 100%
+  );
+}
+.timeline-line::after {
+  content: '';
+  position: absolute; left: -3px; top: 0;
+  width: 8px; height: 80px;
+  background: linear-gradient(to bottom, transparent, #6EC5FF, transparent);
+  border-radius: 4px;
+  animation: linePulse 4s ease-in-out infinite;
+}
+@keyframes linePulse {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: calc(100% - 80px); opacity: 0; }
+}
+
+/* Timeline item: left date — center logo — right card */
+.tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  gap: 0;
+  margin-bottom: 80px;
+  align-items: center;
+  opacity: 1; transform: translateY(0);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tl-item.animate-in {
+  opacity: 0; transform: translateY(40px);
+}
+.tl-item.animate-in .tl-date {
+  opacity: 0; transform: translateX(-40px);
+}
+.tl-item.animate-in .tl-logo {
+  opacity: 0; transform: scale(0.3);
+}
+.tl-item.animate-in .tl-card {
+  opacity: 0; transform: translateX(50px);
+}
+.tl-item.visible { opacity: 1; transform: translateY(0); }
+.tl-item.visible .tl-date {
+  opacity: 1; transform: translateX(0);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+.tl-item.visible .tl-logo {
+  opacity: 1; transform: scale(1);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s;
+}
+.tl-item.visible .tl-card {
+  opacity: 1; transform: translateX(0);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+}
+
+/* Center logo circle */
+.tl-logo {
+  grid-column: 2;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  z-index: 5;
+  position: relative;
+  justify-self: center;
+  background: #12141E;
+  border: 2px solid rgba(110,197,255,0.4);
+  box-shadow: 0 0 20px rgba(110,197,255,0.3), 0 0 40px rgba(110,197,255,0.1);
+  animation: logoPulse 3s ease-in-out infinite;
+  transition: all 0.3s;
+}
+.tl-logo:hover { transform: scale(1.15); box-shadow: 0 0 30px rgba(110,197,255,0.5), 0 0 60px rgba(110,197,255,0.2); }
+.tl-item.edu .tl-logo { border-color: rgba(167,139,250,0.4); box-shadow: 0 0 20px rgba(167,139,250,0.3), 0 0 40px rgba(167,139,250,0.1); }
+.tl-item.edu .tl-logo:hover { box-shadow: 0 0 30px rgba(167,139,250,0.5), 0 0 60px rgba(167,139,250,0.2); }
+@keyframes logoPulse {
+  0%,100% { box-shadow: 0 0 20px rgba(110,197,255,0.3), 0 0 40px rgba(110,197,255,0.1); }
+  50% { box-shadow: 0 0 28px rgba(110,197,255,0.5), 0 0 50px rgba(110,197,255,0.15); }
+}
+
+/* Date on left */
+.tl-date {
+  grid-column: 1;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  text-align: right;
+  padding-right: 28px;
+  line-height: 1.5;
+}
+.tl-logo img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* Card on right */
+.tl-card {
+  grid-column: 3;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 22px 26px;
+  margin-left: 28px;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  position: relative; overflow: hidden;
+}
+.tl-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(110,197,255,0.06) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.tl-card:hover::before { opacity: 1; }
+.tl-card:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(110,197,255,0.2);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(110,197,255,0.05);
+  transform: translateX(4px);
+}
+.tl-item.edu .tl-card:hover { border-color: rgba(167,139,250,0.2); }
+/* Connector line from logo to card */
+.tl-card::after {
+  content: '';
+  position: absolute; left: -28px; top: 50%;
+  width: 28px; height: 1px;
+  background: linear-gradient(to right, rgba(110,197,255,0.3), rgba(110,197,255,0.05));
+  pointer-events: none;
+}
+.tl-item.edu .tl-card::after { background: linear-gradient(to right, rgba(167,139,250,0.3), rgba(167,139,250,0.05)); }
+
+.tl-card-company { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.tl-card-role { font-size: 13px; color: #6EC5FF; font-weight: 500; }
+.tl-item.edu .tl-card-role { color: #A78BFA; }
+
+/* ===== SECTION 3: PROJECTS ===== */
+.projects-section {
+  padding: 80px 40px;
+  max-width: 1200px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.projects-header { text-align: center; margin-bottom: 100px; }
+.projects-header h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 40px; font-weight: 600; color: #fff;
+}
+.projects-header p { font-size: 14px; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
+/* Project block: one project per row */
+.project-block {
+  margin-bottom: 140px;
+  opacity: 1; transform: translateY(0) scale(1);
+  transition: opacity 0.8s, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.project-block.animate-in { opacity: 0; transform: translateY(60px) scale(0.97); }
+.project-block.visible { opacity: 1; transform: translateY(0) scale(1); }
+.project-block:last-child { margin-bottom: 0; }
+
+.project-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  margin-bottom: 32px;
+}
+.project-info {
+  flex: 1;
+  padding-top: 40px;
+}
+.project-company {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 12px;
+}
+.project-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 28px; font-weight: 600; color: #fff; margin-bottom: 12px;
+}
+.project-desc {
+  font-size: 14px; line-height: 1.9; color: rgba(255,255,255,0.45); margin-bottom: 32px;
+}
+.project-metrics { display: flex; gap: 32px; flex-wrap: wrap; }
+.project-metric .val {
+  font-size: 22px; font-weight: 700; color: #6EC5FF;
+  font-family: 'Space Grotesk', monospace;
+}
+.project-metric .lbl {
+  font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 4px;
+}
+
+/* iPhone mockup frame */
+.phone-mockup {
+  width: 280px; min-width: 280px;
+  height: 580px;
+  border-radius: 44px;
+  border: 4px solid #2A2D3A;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.phone-mockup:hover { transform: translateY(-4px); }
+#phone-gaode, #phone-meituan { cursor: pointer; }
+/* Notch */
+.phone-notch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 28px;
+  background: #000; border-radius: 0 0 18px 18px;
+  z-index: 10;
+}
+/* Screen carousel */
+.phone-screen {
+  width: 100%; height: 100%;
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+}
+/* Phone slides */
+.phone-slide {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: #000;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.phone-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.phone-slide img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 40px;
+}
+/* Content slide: scrollable long page */
+.phone-slide.content-slide {
+  overflow-y: auto;
+  display: block;
+  align-items: unset;
+  justify-content: unset;
+  padding-top: 0;
+}
+.phone-slide.content-slide::-webkit-scrollbar { display: none; }
+.phone-slide.content-slide img {
+  width: 100%; height: auto;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+}
+/* Slide indicator dots */
+.phone-dots {
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px; z-index: 10;
+}
+.phone-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s;
+}
+.phone-dot.active { background: #fff; width: 18px; border-radius: 3px; }
+/* Swipe hint */
+.phone-hint {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  font-size: 10px; color: rgba(255,255,255,0.3);
+  letter-spacing: 1px; z-index: 10;
+  animation: hintPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+/* Click overlay for phone navigation */
+.phone-click-overlay { display: none; }
+@keyframes hintPulse { 0%,100%{opacity:0.3;} 50%{opacity:0.7;} }
+
+/* Stacked phones (for multi-product demos) */
+.phone-stack {
+  position: relative;
+  width: 320px; min-width: 320px;
+  height: 580px;
+  perspective: 1200px;
+}
+.phone-stack .phone-mockup {
+  position: absolute;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+.phone-stack .phone-mockup:nth-child(1) {
+  top: 0; left: 0;
+  z-index: 2;
+  transform: translate(0, 0) rotateY(0deg) rotateX(0deg);
+}
+.phone-stack .phone-mockup:nth-child(2) {
+  top: 30px; left: 50px;
+  z-index: 1;
+  transform: translate(0, 0) rotateY(0deg) rotateX(0deg) scale(0.92);
+  opacity: 0.75;
+}
+/* On hover: 点点 slides to lower-right, 宠物陪伴 rises to upper-left */
+.phone-stack:hover .phone-mockup:nth-child(1) {
+  transform: translate(50px, 30px) rotateY(-6deg) rotateX(4deg) scale(0.9);
+  opacity: 0.7;
+  z-index: 1;
+}
+.phone-stack:hover .phone-mockup:nth-child(2) {
+  transform: translate(-50px, -30px) rotateY(3deg) rotateX(-2deg) scale(1);
+  opacity: 1;
+  z-index: 3;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+/* Apple-style feature tags */
+.feature-tags {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 0;
+  max-width: 260px;
+}
+.feature-tag {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 13px; color: rgba(255,255,255,0.6);
+  position: relative; z-index: 5;
+  text-decoration: none;
+}
+.feature-tag:hover {
+  background: rgba(110,197,255,0.08);
+  border-color: rgba(110,197,255,0.25);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.feature-tag .tag-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(110,197,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+.feature-tag:hover .tag-icon {
+  background: rgba(110,197,255,0.15);
+  border-color: #6EC5FF;
+}
+.feature-tag .tag-icon svg { width: 10px; height: 10px; stroke: #6EC5FF; fill: none; stroke-width: 2.5; }
+
+/* Feature detail panel (Apple-style expanded view) */
+#_ { position: fixed; top: 0; pointer-events: none; opacity: 0; }
+.feature-panel {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(8,9,15,0.96);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s, visibility 0.4s;
+  overflow-y: auto;
+}
+.feature-panel:target { opacity: 1; visibility: visible; pointer-events: auto; }
+.feature-panel-backdrop { position: absolute; inset: 0; z-index: 0; }
+.feature-panel .panel-flow-container { background: transparent; border: none; padding: 0; }
+/* Mind map component — radial design */
+.panel-mindmap {
+  background: radial-gradient(ellipse at 50% 0%, rgba(110,197,255,0.03) 0%, transparent 70%);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 24px;
+  padding: 48px 36px 40px;
+  margin-bottom: 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.panel-mindmap::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(110,197,255,0.5), transparent);
+}
+.mindmap-center {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 36px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, rgba(110,197,255,0.12) 0%, rgba(167,139,250,0.08) 100%);
+  border: 1px solid rgba(110,197,255,0.25);
+  font-size: 14px; font-weight: 600; color: #fff;
+  margin-bottom: 0;
+  position: relative;
+  box-shadow: 0 0 30px rgba(110,197,255,0.06), inset 0 1px 0 rgba(255,255,255,0.06);
+  letter-spacing: 0.5px;
+}
+.mindmap-center::after { display: none; }
+.mindmap-branches {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+  text-align: left;
+  padding: 0;
+  border: none;
+  margin-left: 0;
+}
+.mindmap-branches.horizontal {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  text-align: center;
+}
+.mindmap-branch {
+  position: relative;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s;
+  padding-left: 20px;
+}
+.mindmap-branch::before {
+  content: '';
+  position: absolute; top: 0; left: 20px;
+  width: 24px; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, #6EC5FF, rgba(167,139,250,0.6));
+  opacity: 0.6;
+}
+.mindmap-branches.horizontal .mindmap-branch::before {
+  left: 50%; transform: translateX(-50%);
+}
+.mindmap-branch:hover {
+  background: rgba(110,197,255,0.04);
+  border-color: rgba(110,197,255,0.15);
+  transform: translateY(-2px);
+}
+.mindmap-node {
+  display: inline-block;
+  padding: 0;
+  border: none; background: none;
+  font-size: 13px; color: #fff; font-weight: 600;
+  margin-bottom: 6px;
+  border-radius: 0;
+}
+.mindmap-leaf {
+  font-size: 11px; color: rgba(255,255,255,0.4);
+  line-height: 1.6; padding: 0;
+}
+.mindmap-branches.horizontal .mindmap-leaf {
+  padding-left: 0; margin-top: 4px;
+}
+.feature-panel-inner {
+  position: relative; z-index: 1;
+  max-width: 800px; margin: 0 auto;
+  padding: 80px 40px 60px;
+  animation: panelSlideUp 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes panelSlideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.feature-panel-close {
+  position: fixed; top: 24px; right: 24px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 210; transition: all 0.3s; text-decoration: none;
+}
+.feature-panel-close:hover { background: rgba(255,255,255,0.15); transform: rotate(90deg); }
+.feature-panel-close svg { stroke: #fff; fill: none; stroke-width: 2; width: 18px; height: 18px; }
+.panel-label {
+  font-size: 10px; color: rgba(110,197,255,0.7); letter-spacing: 4px;
+  text-transform: uppercase; margin-bottom: 16px; font-weight: 600;
+}
+.panel-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32px; font-weight: 600; color: #fff;
+  margin-bottom: 20px; line-height: 1.3;
+}
+.panel-desc {
+  font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.5);
+  margin-bottom: 40px;
+}
+/* Flow chart in panel — modern connected design */
+.panel-flow {
+  background: rgba(255,255,255,0.015);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 24px;
+  padding: 40px 36px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.panel-flow::after {
+  content: '';
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 200px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(110,197,255,0.2), transparent);
+}
+.panel-flow-title {
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px 36px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, rgba(110,197,255,0.12) 0%, rgba(167,139,250,0.08) 100%);
+  border: 1px solid rgba(110,197,255,0.25);
+  font-size: 14px; font-weight: 600; color: #fff;
+  margin: 0 auto 28px;
+  position: relative;
+  box-shadow: 0 0 30px rgba(110,197,255,0.06), inset 0 1px 0 rgba(255,255,255,0.06);
+  letter-spacing: 0.5px;
+  text-align: center;
+  width: fit-content;
+}
+.panel-flow-steps {
+  display: flex; align-items: stretch; justify-content: center;
+  gap: 0; flex-wrap: wrap;
+}
+.panel-flow-step {
+  padding: 16px 24px; border-radius: 14px;
+  background: linear-gradient(160deg, rgba(110,197,255,0.06) 0%, rgba(167,139,250,0.03) 100%);
+  border: 1px solid rgba(110,197,255,0.12);
+  font-size: 13px; color: #fff; font-weight: 600;
+  position: relative;
+  transition: all 0.3s;
+  text-align: center;
+  min-width: 100px;
+}
+.panel-flow-step:hover {
+  background: linear-gradient(160deg, rgba(110,197,255,0.12) 0%, rgba(167,139,250,0.06) 100%);
+  border-color: rgba(110,197,255,0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(110,197,255,0.08);
+}
+.panel-flow-step .step-sub {
+  display: block; font-size: 10px; color: rgba(255,255,255,0.35);
+  font-weight: 400; margin-top: 6px; line-height: 1.4;
+  letter-spacing: 0.3px;
+}
+.panel-flow-arrow {
+  width: 36px; display: flex; align-items: center; justify-content: center;
+  color: rgba(110,197,255,0.4); font-size: 14px;
+  position: relative;
+}
+.panel-flow-arrow::before {
+  content: '';
+  position: absolute; top: 50%; left: 4px; right: 4px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(110,197,255,0.3), rgba(167,139,250,0.3));
+  transform: translateY(-1px);
+}
+.panel-flow-arrow::after {
+  content: '';
+  position: absolute; top: 50%; right: 4px;
+  width: 5px; height: 5px;
+  border-top: 1px solid rgba(110,197,255,0.5);
+  border-right: 1px solid rgba(110,197,255,0.5);
+  transform: translateY(-50%) rotate(45deg);
+}
+/* Vertical flow variant */
+.panel-flow-vertical {
+  display: flex; flex-direction: column; align-items: stretch; gap: 0;
+}
+.panel-flow-vertical .panel-flow-step {
+  text-align: left;
+}
+.panel-flow-vertical .panel-flow-arrow {
+  width: auto; height: 28px; justify-content: flex-start;
+  padding-left: 30px; transform: rotate(90deg) scaleX(0.8);
+}
+/* Branch node with children */
+.flow-branch {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px;
+}
+.flow-branch-item {
+  padding: 6px 12px; border-radius: 8px;
+  background: rgba(167,139,250,0.08);
+  border: 1px solid rgba(167,139,250,0.15);
+  font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 400;
+}
+/* Diagram card (for structured info blocks) */
+.panel-diagram {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.panel-diagram-title {
+  font-size: 13px; color: #6EC5FF; font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.panel-diagram-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 14px;
+}
+.panel-diagram-row:last-child { margin-bottom: 0; }
+.panel-diagram-node {
+  padding: 8px 16px; border-radius: 10px;
+  background: rgba(110,197,255,0.06);
+  border: 1px solid rgba(110,197,255,0.12);
+  font-size: 12px; color: #fff; font-weight: 500;
+  white-space: nowrap; flex-shrink: 0;
+}
+.panel-diagram-detail {
+  font-size: 12px; color: rgba(255,255,255,0.5);
+  line-height: 1.6; padding-top: 6px;
+}
+.panel-diagram-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
+}
+.panel-diagram-tag {
+  padding: 4px 10px; border-radius: 6px;
+  background: rgba(167,139,250,0.06);
+  border: 1px solid rgba(167,139,250,0.12);
+  font-size: 11px; color: rgba(255,255,255,0.6);
+}
+/* (metrics and highlights removed - using visual diagrams instead) */
+
+/* ===== FOOTER ===== */
+.footer { padding: 48px 40px; border-top: 1px solid rgba(255,255,255,0.04); text-align: center; position: relative; z-index: 1; }
+.footer-text { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .intro { padding: 100px 20px 60px; }
+  .intro-layout { flex-direction: column; gap: 40px; }
+  .intro-text { width: 100%; padding-right: 0; max-width: 100%; }
+  .intro-name { font-size: clamp(56px, 14vw, 96px); }
+  .intro-photo-wrap {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    order: -1;
+    margin-left: 0;
+  }
+  .intro-photo-wrap::after {
+    background: linear-gradient(to top, #08090F 0%, transparent 50%),
+                linear-gradient(to bottom, #08090F 0%, transparent 30%);
+  }
+  .timeline { padding: 0 20px; }
+  .timeline-line { left: 28px; transform: none; }
+  .tl-item { grid-template-columns: 1fr !important; gap: 12px; padding-left: 60px; }
+  .tl-item .tl-date { grid-column: 1 !important; text-align: left !important; padding: 0 !important; }
+  .tl-item .tl-logo { position: absolute; left: 0; grid-column: 1; }
+  .tl-item .tl-card { grid-column: 1 !important; margin-left: 0; }
+  .projects-section { padding: 60px 20px; }
+  .project-top { flex-direction: column; gap: 32px; align-items: center; }
+  .phone-mockup { width: 240px; min-width: 240px; height: 500px; }
+  .phone-stack { width: 280px; min-width: 280px; height: 520px; }
+  .phone-stack .phone-mockup { width: 220px; min-width: 220px; height: 460px; }
+  .project-info { padding-top: 0; text-align: center; }
+  .project-metrics { justify-content: center; }
+  .feature-tags { max-width: 100%; align-items: center; }
+  .feature-panel-inner { padding: 60px 20px 40px; }
+  .panel-flow-steps { flex-direction: column; gap: 0; }
+  .panel-flow-arrow { transform: rotate(90deg); width: auto; height: 32px; }
+  .bg-text { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Custom cursor -->
+
+
+<!-- Particles -->
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">ZYY.</div>
+  <div class="nav-links">
+    <a href="#intro">关于我</a>
+    <a href="#timeline">经历</a>
+    <a href="#projects">作品</a>
+  </div>
+</nav>
+
+<!-- ===== SECTION 1: INTRO ===== -->
+<section class="intro" id="intro">
+  <div class="intro-layout">
+    <div class="intro-text">
+      <p class="intro-greeting">Hello，我是</p>
+      <h1 class="intro-name"><span class="char">周</span><span class="char">钰</span><span class="char">滢</span></h1>
+      <p class="intro-title">AI 产品经理</p>
+      <div class="intro-contact">
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <span>北京</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
+          <span>zhouyuying_1998@foxmail.com</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <span>18520456341</span>
+        </div>
+      </div>
+    </div>
+    <div class="intro-photo-wrap">
+      <img src="photo.jpg" alt="周钰滢"/>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: TIMELINE ===== -->
+<section class="timeline-section" id="timeline">
+  <div class="bg-text left">教育</div>
+  <div class="bg-text right">工作</div>
+  <div class="timeline-header">
+    <h2>我的经历</h2>
+    <p>教育与职业经历</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-line"></div>
+    <div class="tl-item edu"><div class="tl-date">2016.9 — 2020.6</div><div class="tl-logo"><img src="logo-nankai.jpg" alt="南开大学"/></div><div class="tl-card"><div class="tl-card-company">南开大学</div><div class="tl-card-role">本科 · 汉语言文学</div></div></div>
+    <div class="tl-item edu"><div class="tl-date">2022.2 — 2022.7</div><div class="tl-logo"><img src="logo-barcelona.jpg" alt="巴塞罗那大学"/></div><div class="tl-card"><div class="tl-card-company">巴塞罗那大学</div><div class="tl-card-role">学术交换 · 英语语言文学</div></div></div>
+    <div class="tl-item edu"><div class="tl-date">2020.9 — 2023.6</div><div class="tl-logo"><img src="logo-nankai.jpg" alt="南开大学"/></div><div class="tl-card"><div class="tl-card-company">南开大学</div><div class="tl-card-role">硕士 · 比较文学与世界文学</div></div></div>
+    <div class="tl-item work"><div class="tl-date">2023.7 — 2024.9</div><div class="tl-logo"><img src="logo-xiaohongshu.png" alt="小红书"/></div><div class="tl-card"><div class="tl-card-company">小红书</div><div class="tl-card-role">AI产品运营</div></div></div>
+    <div class="tl-item work"><div class="tl-date">2024.9 — 2025.11</div><div class="tl-logo"><img src="logo-meituan.png" alt="美团"/></div><div class="tl-card"><div class="tl-card-company">美团</div><div class="tl-card-role">AI产品运营</div></div></div>
+    <div class="tl-item work"><div class="tl-date">2025.11 — 至今</div><div class="tl-logo"><img src="logo-gaode.png" alt="高德地图"/></div><div class="tl-card"><div class="tl-card-company">高德地图</div><div class="tl-card-role">AI产品经理</div></div></div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: PROJECTS ===== -->
+<section class="projects-section" id="projects">
+  <div class="projects-header"><h2>项目作品</h2><p>产品案例展示</p></div>
+
+  <!-- Project 1: 高德 -->
+  <div class="project-block">
+    <div class="project-top">
+      <div class="phone-mockup" id="phone-gaode" onclick="advanceSlide(this)">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-slide active"><img src="gaode-demo.jpg" alt="高德首页"/></div>
+          <div class="phone-slide content-slide"><img src="gaode-detail.jpg" alt="高德内容页"/></div>
+        </div>
+        <div class="phone-dots" style="display:none;"><span class="phone-dot active"></span><span class="phone-dot"></span></div>
+        <div class="phone-hint" style="display:none;"></div>
+      </div>
+      <div class="project-info">
+        <div class="project-company">高德地图 · 2025</div>
+        <div class="project-title">鲜度内容种草 & 文化IP短剧</div>
+        <div class="project-desc">负责"导航工具"向"出行决策平台"转型的内容能力建设，定义内容方向，搭建多智能体内容生产与评测流程。</div>
+        <div class="project-metrics">
+          <div class="project-metric"><div class="val">+8.6%</div><div class="lbl">消费时长</div></div>
+          <div class="project-metric"><div class="val">50→70%</div><div class="lbl">AIGC可用率</div></div>
+          <div class="project-metric"><div class="val">T+0</div><div class="lbl">上线时效</div></div>
+        </div>
+        <div class="feature-tags" style="margin-top:24px;">
+          <a class="feature-tag" href="#panel-gaode-pipeline"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>自动化内容生产流程</a>
+          <a class="feature-tag" href="#panel-gaode-eval"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>3层质检流程</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 2: 美团/虾丸 -->
+  <div class="project-block">
+    <div class="project-top">
+      <div class="phone-mockup" id="phone-meituan" onclick="advanceSlide(this)">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-slide active"><img src="meituan-demo.jpg" alt="虾丸首页"/></div>
+          <div class="phone-slide content-slide"><img src="meituan-detail.jpg" alt="虾丸内容页"/></div>
+        </div>
+        <div class="phone-dots" style="display:none;"><span class="phone-dot active"></span><span class="phone-dot"></span></div>
+        <div class="phone-hint" style="display:none;"></div>
+      </div>
+      <div class="project-info">
+        <div class="project-company">美团 · 2024</div>
+        <div class="project-title">虾丸 AI内容生态</div>
+        <div class="project-desc">从0到1搭建虾丸的内容生态，实现AI内容生产、个性化分发的完整闭环。</div>
+        <div class="project-metrics">
+          <div class="project-metric"><div class="val">+125%</div><div class="lbl">浏览量</div></div>
+          <div class="project-metric"><div class="val">2000+</div><div class="lbl">日产内容</div></div>
+          <div class="project-metric"><div class="val">30%</div><div class="lbl">周留存率</div></div>
+        </div>
+        <div class="feature-tags" style="margin-top:24px;">
+          <a class="feature-tag" href="#panel-meituan-strategy"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>新热内容策略</a>
+          <a class="feature-tag" href="#panel-meituan-platform"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>自动化内容生产 & 平台化</a>
+          <a class="feature-tag" href="#panel-meituan-recommend"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>个性化推荐</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 3: 小红书 -->
+  <div class="project-block">
+    <div class="project-top">
+      <div class="phone-stack">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-slide active"><img src="xiaohongshu-demo2.jpg" alt="小红书-点点"/></div>
+          </div>
+        </div>
+        <div class="phone-mockup" id="phone-xiaohongshu">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-slide active"><img src="xiaohongshu-demo.jpg" alt="小红书-宠物小伙伴"/></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-company">小红书 · 2023</div>
+        <div class="project-title">AI社区产品矩阵</div>
+        <div class="project-desc">负责3款AI产品的策略制定、评测与优化，建立数据驱动的持续迭代闭环。</div>
+        <div class="project-metrics">
+          <div class="project-metric"><div class="val">>90%</div><div class="lbl">准确率</div></div>
+          <div class="project-metric"><div class="val">&lt;5%</div><div class="lbl">问题率</div></div>
+          <div class="project-metric"><div class="val">30%</div><div class="lbl">留存率</div></div>
+        </div>
+        <div class="feature-tags" style="margin-top:24px;">
+          <a class="feature-tag" href="#panel-xhs-strategy"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>回复策略定义</a>
+          <a class="feature-tag" href="#panel-xhs-eval"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>评测闭环</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feature Detail Panel -->
+<span id="_"></span>
+<div class="feature-panel" id="panel-gaode-pipeline">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">高德地图</div>
+    <div class="panel-title">自动化内容生产流程</div>
+    <div class="panel-flow-container">
+      <div class="panel-flow">
+        <div class="panel-flow-title">内容生产</div>
+        <div class="panel-flow-steps">
+          <span class="panel-flow-step">史料收集与整合</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">剧本生成</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">视频生产</span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">剧本生成·多Agent协同</div>
+        <div class="mindmap-branches">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">大纲编剧</div>
+            <div class="mindmap-leaf">整体故事架构 · 关键情节 · 伏笔设置</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">分集编剧</div>
+            <div class="mindmap-leaf">单集故事撰写 · 悬念设置</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">角色设计师</div>
+            <div class="mindmap-leaf">性格 · 人物弧光 · 心智模型 · 语言风格</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">视频生产·多Agent协同</div>
+        <div class="mindmap-branches">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">场景设计师</div>
+            <div class="mindmap-leaf">搜集场景原型图 · 风格化加工</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">角色设计师</div>
+            <div class="mindmap-leaf">角色形象设计 · 跨场景一致性</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">分镜师</div>
+            <div class="mindmap-leaf">分镜脚本撰写 · 关键帧生成</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">摄像师</div>
+            <div class="mindmap-leaf">视频生成</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="feature-panel" id="panel-gaode-eval">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">高德地图</div>
+    <div class="panel-title">3层质检流程</div>
+    <div class="panel-flow-container">
+      <div class="panel-flow">
+        <div class="panel-flow-title">三层质检体系</div>
+        <div class="panel-flow-steps">
+          <span class="panel-flow-step">第1层<span class="step-sub">规则检查</span></span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">第2层<span class="step-sub">用户智能体模拟</span></span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">第3层<span class="step-sub">真人反馈</span></span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">规则检查</div>
+        <div class="mindmap-branches horizontal">
+          <div class="mindmap-branch"><div class="mindmap-node">历史合理性</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">语言准确性</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">情节趣味性</div></div>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">用户智能体模拟</div>
+        <div class="mindmap-branches">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">逻辑派用户</div>
+            <div class="mindmap-leaf">剧情因果链自洽</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">沉浸派用户</div>
+            <div class="mindmap-leaf">情感代入与节奏</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">考据派用户</div>
+            <div class="mindmap-leaf">历史细节还原度</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">纯新手用户</div>
+            <div class="mindmap-leaf">可理解性与趣味门槛</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-flow">
+        <div class="panel-flow-title">反馈闭环</div>
+        <div class="panel-flow-steps">
+          <span class="panel-flow-step">真人反馈结果</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">反哺规则库<span class="step-sub">优化检查规则</span></span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">反哺模拟参数<span class="step-sub">优化智能体行为</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="feature-panel" id="panel-meituan-strategy">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">美团 · 虾丸</div>
+    <div class="panel-title">新热内容策略</div>
+    <div class="panel-flow-container">
+      <div class="panel-mindmap">
+        <div class="mindmap-center">高价值内容类型</div>
+        <div class="mindmap-branches">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">限时活动</div>
+            <div class="mindmap-leaf">快闪 · 市集 · 展览</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">城市新店</div>
+            <div class="mindmap-leaf">城市首店 · 网红店</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">新热玩法</div>
+            <div class="mindmap-leaf">年味 · 赏花 · 浪浪山打卡 · 七夕捡垃圾路线</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-flow">
+        <div class="panel-flow-title">内容生产·多Agent协同</div>
+        <div class="panel-flow-steps">
+          <span class="panel-flow-step">热点挖掘</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">信息抽取</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">内容生产</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">质量评测</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="feature-panel" id="panel-meituan-recommend">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">美团 · 虾丸</div>
+    <div class="panel-title">个性化推荐</div>
+    <div class="panel-flow-container">
+      <div class="panel-mindmap">
+        <div class="mindmap-center">四维用户标签体系</div>
+        <div class="mindmap-branches horizontal">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">时间</div>
+            <div class="mindmap-leaf">工作日/周末 · 时令</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">空间</div>
+            <div class="mindmap-leaf">常驻城市 · 活动半径</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">人群</div>
+            <div class="mindmap-leaf">年龄 · 消费 · 社交</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">玩法</div>
+            <div class="mindmap-leaf">美食 · 户外 · 文艺 · 亲子</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-flow">
+        <div class="panel-flow-title">用户标签更新&推荐闭环</div>
+        <div class="panel-flow-steps">
+          <span class="panel-flow-step">用户行为<span class="step-sub">点击 · 收藏 · 对话</span></span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">标签更新<span class="step-sub">实时动态</span></span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">个性化推荐<span class="step-sub">千人千面</span></span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">自定义频道</div>
+        <div class="mindmap-branches">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">用户自然语言输入</div>
+            <div class="mindmap-leaf">"带5岁小孩周末去玩，有车"</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">大模型理解&拆解内容标签</div>
+            <div class="mindmap-leaf">儿童友好 · 可停车 · 周末出行</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">创建用户专属频道</div>
+            <div class="mindmap-leaf">周末带娃游</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="feature-panel" id="panel-meituan-platform">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">美团 · 虾丸</div>
+    <div class="panel-title">自动化内容生产 & 平台化</div>
+    <div class="panel-flow-container">
+      <div class="panel-flow">
+        <div class="panel-flow-title">平台架构</div>
+        <div class="panel-flow-steps">
+          <span class="panel-flow-step">链路抽象<span class="step-sub">模块化拆解</span></span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">平台化封装<span class="step-sub">AI Coding</span></span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">可视化配置<span class="step-sub">各环节可见</span></span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">多业务复用<span class="step-sub">3条业务线</span></span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">支持业务方自主配置</div>
+        <div class="mindmap-branches horizontal">
+          <div class="mindmap-branch"><div class="mindmap-node">覆盖城市</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">内容主题</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">目标人群</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">内容风格</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="feature-panel" id="panel-xhs-strategy">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">小红书</div>
+    <div class="panel-title">回复策略定义</div>
+    <div class="panel-flow-container">
+      <div class="panel-mindmap">
+        <div class="mindmap-center">3款AI产品</div>
+        <div class="mindmap-branches">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">商家笔记生成</div>
+            <div class="mindmap-leaf">转化率导向 · 商业文案策略</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">宠物小伙伴</div>
+            <div class="mindmap-leaf">情感陪伴 · 个性化互动 · 角色一致性</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">点点</div>
+            <div class="mindmap-leaf">效率导向 · 信息密度 · 回复准确性</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="feature-panel" id="panel-xhs-eval">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">小红书</div>
+    <div class="panel-title">评测闭环机制</div>
+    <div class="panel-flow-container">
+      <div class="panel-flow">
+        <div class="panel-flow-title">数据驱动闭环</div>
+        <div class="panel-flow-steps">
+          <span class="panel-flow-step">数据监控</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">问题归因</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">策略调整</span>
+          <span class="panel-flow-arrow"></span>
+          <span class="panel-flow-step">效果验证</span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">评测维度</div>
+        <div class="mindmap-branches horizontal">
+          <div class="mindmap-branch"><div class="mindmap-node">准确性</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">相关性</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">安全性</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">有用性</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="footer-text">&copy; 2025 周钰滢</div></footer>
+
+<script>
+// ===== PARTICLES =====
+(function() {
+  var canvas = document.getElementById('particles');
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var mouse = { x: 0, y: 0 };
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  document.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+  for (var i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 2 + 0.5,
+      alpha: Math.random() * 0.3 + 0.1
+    });
+  }
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(function(p) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      var dx = mouse.x - p.x, dy = mouse.y - p.y;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 150) { p.x -= dx * 0.005; p.y -= dy * 0.005; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(110,197,255,' + p.alpha + ')';
+      ctx.fill();
+    });
+    // Draw connections
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var dx = particles[i].x - particles[j].x;
+        var dy = particles[i].y - particles[j].y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = 'rgba(110,197,255,' + (0.06 * (1 - dist/120)) + ')';
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ===== SCROLL PROGRESS =====
+window.addEventListener('scroll', function() {
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  var pct = (window.scrollY / h) * 100;
+  document.getElementById('scrollProgress').style.width = pct + '%';
+});
+
+// ===== CARD MOUSE GLOW =====
+document.querySelectorAll('.tl-card').forEach(function(card) {
+  card.addEventListener('mousemove', function(e) {
+    var rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+    card.style.setProperty('--mouse-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+  });
+});
+
+// ===== 3D TILT ON PHONE MOCKUPS =====
+document.querySelectorAll('.phone-mockup').forEach(function(phone) {
+  // Skip phones that have click-to-advance or are in phone-stack
+  if (phone.closest('.phone-stack')) return;
+  if (phone.id === 'phone-gaode' || phone.id === 'phone-meituan') return;
+  phone.addEventListener('mousemove', function(e) {
+    var rect = phone.getBoundingClientRect();
+    var x = (e.clientX - rect.left) / rect.width - 0.5;
+    var y = (e.clientY - rect.top) / rect.height - 0.5;
+    phone.style.transform = 'perspective(1000px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 4) + 'deg) translateY(-4px)';
+  });
+  phone.addEventListener('mouseleave', function() {
+    phone.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateY(0)';
+  });
+});
+
+// ===== INTERSECTION OBSERVER =====
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var delay = entry.target.dataset.delay || 0;
+      setTimeout(function() { entry.target.classList.add('visible'); }, delay);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+
+// Timeline items: staggered reveal
+document.querySelectorAll('.tl-item').forEach(function(el, i) {
+  el.classList.add('animate-in');
+  el.dataset.delay = i * 150;
+  observer.observe(el);
+});
+
+// Project blocks: staggered reveal
+document.querySelectorAll('.project-block').forEach(function(el, i) {
+  el.classList.add('animate-in');
+  el.dataset.delay = i * 200;
+  observer.observe(el);
+});
+
+</script>
+
+</body>
+</html>
