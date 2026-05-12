@@ -335,11 +335,11 @@ body {
 .panel-flow { background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px 36px; margin-bottom: 28px; position: relative; overflow: hidden; }
 .panel-flow::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 200px; height: 1px; background: linear-gradient(90deg, transparent, rgba(110,197,255,0.2), transparent); }
 .panel-flow-title { display: flex; align-items: center; justify-content: center; padding: 14px 36px; border-radius: 40px; background: linear-gradient(135deg, rgba(110,197,255,0.12) 0%, rgba(167,139,250,0.08) 100%); border: 1px solid rgba(110,197,255,0.25); font-size: 14px; font-weight: 600; color: #fff; margin: 0 auto 28px; width: fit-content; }
-.panel-flow-steps { display: flex; align-items: stretch; justify-content: center; gap: 0; flex-wrap: wrap; }
-.panel-flow-step { padding: 16px 24px; border-radius: 14px; background: linear-gradient(160deg, rgba(110,197,255,0.06) 0%, rgba(167,139,250,0.03) 100%); border: 1px solid rgba(110,197,255,0.12); font-size: 13px; color: #fff; font-weight: 600; position: relative; transition: all 0.3s; text-align: center; min-width: 100px; }
+.panel-flow-steps { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap; }
+.panel-flow-step { padding: 16px 20px; border-radius: 14px; background: linear-gradient(160deg, rgba(110,197,255,0.06) 0%, rgba(167,139,250,0.03) 100%); border: 1px solid rgba(110,197,255,0.12); font-size: 12px; color: #fff; font-weight: 600; position: relative; transition: all 0.3s; text-align: center; min-width: 0; flex: 1; }
 .panel-flow-step:hover { background: linear-gradient(160deg, rgba(110,197,255,0.12) 0%, rgba(167,139,250,0.06) 100%); border-color: rgba(110,197,255,0.25); transform: translateY(-3px); }
 .panel-flow-step .step-sub { display: block; font-size: 10px; color: rgba(255,255,255,0.35); font-weight: 400; margin-top: 6px; }
-.panel-flow-arrow { width: 36px; display: flex; align-items: center; justify-content: center; color: rgba(110,197,255,0.4); font-size: 14px; position: relative; }
+.panel-flow-arrow { width: 28px; min-width: 28px; display: flex; align-items: center; justify-content: center; color: rgba(110,197,255,0.4); font-size: 14px; position: relative; }
 .panel-flow-arrow::before { content: ''; position: absolute; top: 50%; left: 4px; right: 4px; height: 1px; background: linear-gradient(90deg, rgba(110,197,255,0.3), rgba(167,139,250,0.3)); transform: translateY(-1px); }
 .panel-flow-arrow::after { content: ''; position: absolute; top: 50%; right: 4px; width: 5px; height: 5px; border-top: 1px solid rgba(110,197,255,0.5); border-right: 1px solid rgba(110,197,255,0.5); transform: translateY(-50%) rotate(45deg); }
 
@@ -469,10 +469,10 @@ body {
     <div class="timeline-line"></div>
     <div class="tl-item edu"><div class="tl-date">2016 — 2020</div><div class="tl-logo"><img src="../logo-nankai.jpg" alt="Nankai University"/></div><div class="tl-card"><div class="tl-card-company">Nankai University</div><div class="tl-card-role">B.A. in Chinese Language & Literature</div></div></div>
     <div class="tl-item edu"><div class="tl-date">2022</div><div class="tl-logo"><img src="../logo-barcelona.jpg" alt="University of Barcelona"/></div><div class="tl-card"><div class="tl-card-company">University of Barcelona</div><div class="tl-card-role">Exchange Program &middot; English Studies</div></div></div>
-    <div class="tl-item edu"><div class="tl-date">2020 — 2023</div><div class="tl-logo"><img src="../logo-nankai.jpg" alt="Nankai University"/></div><div class="tl-card"><div class="tl-card-company">Nankai University</div><div class="tl-card-role">M.A. in Comparative Literature</div></div></div>
+    <div class="tl-item edu"><div class="tl-date">2020 — 2023</div><div class="tl-logo"><img src="../logo-nankai.jpg" alt="Nankai University"/></div><div class="tl-card"><div class="tl-card-company">Nankai University</div><div class="tl-card-role">M.A. in Comparative Literature and World Literature</div></div></div>
     <div class="tl-item work"><div class="tl-date">2023 — 2024</div><div class="tl-logo"><img src="../logo-xiaohongshu.png" alt="Xiaohongshu"/></div><div class="tl-card"><div class="tl-card-company">Xiaohongshu (RED)</div><div class="tl-card-role">AI Product Operations</div></div></div>
     <div class="tl-item work"><div class="tl-date">2024 — 2025</div><div class="tl-logo"><img src="../logo-meituan.png" alt="Meituan"/></div><div class="tl-card"><div class="tl-card-company">Meituan</div><div class="tl-card-role">AI Product Operations</div></div></div>
-    <div class="tl-item work"><div class="tl-date">2025 — Present</div><div class="tl-logo"><img src="../logo-gaode.png" alt="Amap"/></div><div class="tl-card"><div class="tl-card-company">Amap (Alibaba Maps)</div><div class="tl-card-role">AI Product Manager</div></div></div>
+    <div class="tl-item work"><div class="tl-date">2025 — Present</div><div class="tl-logo"><img src="../logo-gaode.png" alt="Amap"/></div><div class="tl-card"><div class="tl-card-company">Amap</div><div class="tl-card-role">AI Product Manager</div></div></div>
   </div>
 </section>
 
@@ -494,15 +494,16 @@ body {
       <div class="project-info">
         <div class="project-company">Amap (Alibaba) &middot; 2025</div>
         <div class="project-title">AI-Generated Travel Content & Cultural IP Series</div>
-        <div class="project-desc">Leading the transformation from navigation tool to travel decision platform. Defined content strategy, built multi-agent pipelines for automated content production and quality assurance.</div>
+        <div class="project-desc">Built multi-agent AIGC pipeline with layered strategy: fine-tuning + RAG for bottleneck stages, prompt engineering for others. Defined human-AI boundaries, built visual production platform, and established 3-layer evaluation achieving &gt;80% human-AI alignment.</div>
         <div class="project-metrics">
+          <div class="project-metric"><div class="val">28.3%</div><div class="lbl">CTR (vs 25% avg)</div></div>
           <div class="project-metric"><div class="val">+8.6%</div><div class="lbl">Time Spent</div></div>
-          <div class="project-metric"><div class="val">50&#8594;70%</div><div class="lbl">AIGC Quality Rate</div></div>
-          <div class="project-metric"><div class="val">T+0</div><div class="lbl">Publish Latency</div></div>
+          <div class="project-metric"><div class="val">50&#8594;80%</div><div class="lbl">AIGC Quality Rate</div></div>
+          <div class="project-metric"><div class="val">80%</div><div class="lbl">IP Completion Rate</div></div>
         </div>
         <div class="feature-tags" style="margin-top:24px;">
-          <a class="feature-tag" href="#panel-gaode-pipeline"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>Automated Content Pipeline</a>
-          <a class="feature-tag" href="#panel-gaode-eval"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>3-Layer QA Framework</a>
+          <a class="feature-tag" href="#panel-gaode-pipeline"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>Multi-Agent Production Pipeline</a>
+          <a class="feature-tag" href="#panel-gaode-eval"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>3-Layer Evaluation System</a>
         </div>
       </div>
     </div>
@@ -579,16 +580,33 @@ body {
   <a href="#_" class="feature-panel-backdrop"></a>
   <div class="feature-panel-inner">
     <div class="panel-label">Amap</div>
-    <div class="panel-title">Automated Content Pipeline</div>
+    <div class="panel-title">Multi-Agent Production Pipeline</div>
     <div class="panel-flow-container">
       <div class="panel-flow">
-        <div class="panel-flow-title">Content Production</div>
+        <div class="panel-flow-title">Layered Production Strategy</div>
         <div class="panel-flow-steps">
-          <span class="panel-flow-step">Research & Curation</span>
+          <span class="panel-flow-step">Bottleneck Stages<span class="step-sub">Fine-tuning + RAG</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">Script Generation</span>
+          <span class="panel-flow-step">Non-bottleneck<span class="step-sub">Prompt Engineering</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">Video Production</span>
+          <span class="panel-flow-step">T+0 Publishing<span class="step-sub">Real-time delivery</span></span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">Human-AI Boundary</div>
+        <div class="mindmap-branches">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">Human: Skeleton & Standards</div>
+            <div class="mindmap-leaf">Content direction, quality criteria, style definition</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">AI: Scale & Variation</div>
+            <div class="mindmap-leaf">Mass production, diversity expansion</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">Visual Production Platform</div>
+            <div class="mindmap-leaf">Human intervention, rewrite, full observability</div>
+          </div>
         </div>
       </div>
       <div class="panel-mindmap">
@@ -616,20 +634,20 @@ body {
   <a href="#_" class="feature-panel-backdrop"></a>
   <div class="feature-panel-inner">
     <div class="panel-label">Amap</div>
-    <div class="panel-title">3-Layer Quality Assurance</div>
+    <div class="panel-title">3-Layer Evaluation System</div>
     <div class="panel-flow-container">
       <div class="panel-flow">
-        <div class="panel-flow-title">QA Framework</div>
+        <div class="panel-flow-title">Evaluation Framework</div>
         <div class="panel-flow-steps">
-          <span class="panel-flow-step">Layer 1<span class="step-sub">Rule-based Check</span></span>
+          <span class="panel-flow-step">Layer 1<span class="step-sub">Rule-based Filtering</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">Layer 2<span class="step-sub">User Agent Simulation</span></span>
+          <span class="panel-flow-step">Layer 2<span class="step-sub">Multi-persona Agent UX Sim</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">Layer 3<span class="step-sub">Human Feedback</span></span>
+          <span class="panel-flow-step">Layer 3<span class="step-sub">Human Calibration</span></span>
         </div>
       </div>
       <div class="panel-mindmap">
-        <div class="mindmap-center">Rule-based Checks</div>
+        <div class="mindmap-center">Rule-based Filtering</div>
         <div class="mindmap-branches horizontal">
           <div class="mindmap-branch"><div class="mindmap-node">Historical Accuracy</div></div>
           <div class="mindmap-branch"><div class="mindmap-node">Language Quality</div></div>
@@ -637,7 +655,7 @@ body {
         </div>
       </div>
       <div class="panel-mindmap">
-        <div class="mindmap-center">User Agent Simulation</div>
+        <div class="mindmap-center">Multi-persona Agent Simulation</div>
         <div class="mindmap-branches">
           <div class="mindmap-branch"><div class="mindmap-node">Logic-driven User</div><div class="mindmap-leaf">Plot causality and consistency</div></div>
           <div class="mindmap-branch"><div class="mindmap-node">Immersive User</div><div class="mindmap-leaf">Emotional engagement and pacing</div></div>
@@ -646,13 +664,20 @@ body {
         </div>
       </div>
       <div class="panel-flow">
-        <div class="panel-flow-title">Feedback Loop</div>
+        <div class="panel-flow-title">Human Calibration &rarr; Feedback Loop</div>
         <div class="panel-flow-steps">
-          <span class="panel-flow-step">Human Feedback</span>
+          <span class="panel-flow-step">Human Calibration</span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">Update Rules<span class="step-sub">Improve checks</span></span>
+          <span class="panel-flow-step">Update Rules<span class="step-sub">Improve filtering</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">Tune Agents<span class="step-sub">Optimize behavior</span></span>
+          <span class="panel-flow-step">Tune Agents<span class="step-sub">Optimize simulation</span></span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">Key Metrics</div>
+        <div class="mindmap-branches horizontal">
+          <div class="mindmap-branch"><div class="mindmap-node">Human-AI Alignment &gt;80%</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">AIGC Quality 50%&rarr;80%</div></div>
         </div>
       </div>
     </div>

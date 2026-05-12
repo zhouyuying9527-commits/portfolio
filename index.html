@@ -1095,15 +1095,16 @@ body {
       <div class="project-info">
         <div class="project-company">高德地图 · 2025</div>
         <div class="project-title">鲜度内容种草 & 文化IP短剧</div>
-        <div class="project-desc">负责"导航工具"向"出行决策平台"转型的内容能力建设，定义内容方向，搭建多智能体内容生产与评测流程。</div>
+        <div class="project-desc">搭建多Agent协同的AIGC生产流程，采取"瓶颈环节微调+RAG增强，非瓶颈环节prompt调优"的分层策略，实现内容T+0生成。划定人机边界，搭建可视化生产平台，建立三层评测机制。</div>
         <div class="project-metrics">
+          <div class="project-metric"><div class="val">28.3%</div><div class="lbl">鲜度CTR(vs大盘25%)</div></div>
           <div class="project-metric"><div class="val">+8.6%</div><div class="lbl">消费时长</div></div>
-          <div class="project-metric"><div class="val">50→70%</div><div class="lbl">AIGC可用率</div></div>
-          <div class="project-metric"><div class="val">T+0</div><div class="lbl">上线时效</div></div>
+          <div class="project-metric"><div class="val">50→80%</div><div class="lbl">AIGC可用率</div></div>
+          <div class="project-metric"><div class="val">80%</div><div class="lbl">文化IP完播率</div></div>
         </div>
         <div class="feature-tags" style="margin-top:24px;">
-          <a class="feature-tag" href="#panel-gaode-pipeline"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>自动化内容生产流程</a>
-          <a class="feature-tag" href="#panel-gaode-eval"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>3层质检流程</a>
+          <a class="feature-tag" href="#panel-gaode-pipeline"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>多Agent协同生产流程</a>
+          <a class="feature-tag" href="#panel-gaode-eval"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>三层评测机制</a>
         </div>
       </div>
     </div>
@@ -1181,16 +1182,33 @@ body {
   <a href="#_" class="feature-panel-backdrop"></a>
   <div class="feature-panel-inner">
     <div class="panel-label">高德地图</div>
-    <div class="panel-title">自动化内容生产流程</div>
+    <div class="panel-title">多Agent协同生产流程</div>
     <div class="panel-flow-container">
       <div class="panel-flow">
-        <div class="panel-flow-title">内容生产</div>
+        <div class="panel-flow-title">分层生产策略</div>
         <div class="panel-flow-steps">
-          <span class="panel-flow-step">史料收集与整合</span>
+          <span class="panel-flow-step">瓶颈环节<span class="step-sub">微调 + RAG增强</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">剧本生成</span>
+          <span class="panel-flow-step">非瓶颈环节<span class="step-sub">Prompt工程调优</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">视频生产</span>
+          <span class="panel-flow-step">T+0生成<span class="step-sub">实时上线</span></span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">人机协同边界</div>
+        <div class="mindmap-branches">
+          <div class="mindmap-branch">
+            <div class="mindmap-node">人定义骨架与标准</div>
+            <div class="mindmap-leaf">内容方向 · 质量标准 · 风格定义</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">模型负责泛化与填充</div>
+            <div class="mindmap-leaf">规模化生产 · 多样性扩展</div>
+          </div>
+          <div class="mindmap-branch">
+            <div class="mindmap-node">可视化生产平台</div>
+            <div class="mindmap-leaf">人工介入 · 重写 · 全流程可见</div>
+          </div>
         </div>
       </div>
       <div class="panel-mindmap">
@@ -1239,20 +1257,20 @@ body {
   <a href="#_" class="feature-panel-backdrop"></a>
   <div class="feature-panel-inner">
     <div class="panel-label">高德地图</div>
-    <div class="panel-title">3层质检流程</div>
+    <div class="panel-title">三层评测机制</div>
     <div class="panel-flow-container">
       <div class="panel-flow">
-        <div class="panel-flow-title">三层质检体系</div>
+        <div class="panel-flow-title">三层评测体系</div>
         <div class="panel-flow-steps">
-          <span class="panel-flow-step">第1层<span class="step-sub">规则检查</span></span>
+          <span class="panel-flow-step">第1层<span class="step-sub">规则筛选</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">第2层<span class="step-sub">用户智能体模拟</span></span>
+          <span class="panel-flow-step">第2层<span class="step-sub">多角色Agent模拟用户体验</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">第3层<span class="step-sub">真人反馈</span></span>
+          <span class="panel-flow-step">第3层<span class="step-sub">真人校准</span></span>
         </div>
       </div>
       <div class="panel-mindmap">
-        <div class="mindmap-center">规则检查</div>
+        <div class="mindmap-center">规则筛选</div>
         <div class="mindmap-branches horizontal">
           <div class="mindmap-branch"><div class="mindmap-node">历史合理性</div></div>
           <div class="mindmap-branch"><div class="mindmap-node">语言准确性</div></div>
@@ -1260,7 +1278,7 @@ body {
         </div>
       </div>
       <div class="panel-mindmap">
-        <div class="mindmap-center">用户智能体模拟</div>
+        <div class="mindmap-center">多角色Agent模拟用户体验</div>
         <div class="mindmap-branches">
           <div class="mindmap-branch">
             <div class="mindmap-node">逻辑派用户</div>
@@ -1281,13 +1299,20 @@ body {
         </div>
       </div>
       <div class="panel-flow">
-        <div class="panel-flow-title">反馈闭环</div>
+        <div class="panel-flow-title">真人校准 → 反馈闭环</div>
         <div class="panel-flow-steps">
-          <span class="panel-flow-step">真人反馈结果</span>
+          <span class="panel-flow-step">真人校准结果</span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">反哺规则库<span class="step-sub">优化检查规则</span></span>
+          <span class="panel-flow-step">反哺规则库<span class="step-sub">优化筛选规则</span></span>
           <span class="panel-flow-arrow"></span>
-          <span class="panel-flow-step">反哺模拟参数<span class="step-sub">优化智能体行为</span></span>
+          <span class="panel-flow-step">反哺Agent参数<span class="step-sub">优化模拟行为</span></span>
+        </div>
+      </div>
+      <div class="panel-mindmap">
+        <div class="mindmap-center">核心指标</div>
+        <div class="mindmap-branches horizontal">
+          <div class="mindmap-branch"><div class="mindmap-node">人机一致率 >80%</div></div>
+          <div class="mindmap-branch"><div class="mindmap-node">AIGC可用率 50%→80%</div></div>
         </div>
       </div>
     </div>
