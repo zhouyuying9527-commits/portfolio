@@ -409,6 +409,27 @@ body {
 .tl-card-role { font-size: 13px; color: #6EC5FF; font-weight: 500; }
 .tl-item.edu .tl-card-role { color: #A78BFA; }
 
+/* ===== AI CODING VIDEO ===== */
+.demo-video-wrap {
+  width: 480px;
+  min-width: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.demo-video-wrap video {
+  width: 100%;
+  display: block;
+}
+#ai-coding .project-top {
+  align-items: center;
+}
+#ai-coding .project-info {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /* ===== SECTION 3: PROJECTS ===== */
 .projects-section {
   padding: 80px 40px;
@@ -935,6 +956,9 @@ body {
   .tl-card-role { font-size: 12px; }
 
   /* Projects */
+  /* AI Coding Video */
+  .demo-video-wrap { width: 100%; min-width: unset; border-radius: 12px; }
+
   .projects-section { padding: 60px 16px; }
   .projects-header { margin-bottom: 60px; }
   .projects-header h2 { font-size: 28px; }
@@ -1024,7 +1048,8 @@ body {
   <div class="nav-links">
     <a href="#intro">关于我</a>
     <a href="#timeline">经历</a>
-    <a href="#projects">作品</a>
+    <a href="#ai-coding">AI Coding</a>
+    <a href="#projects">项目</a>
   </div>
   <a href="en/index.html" style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;border:1px solid rgba(255,255,255,0.1);padding:4px 10px;border-radius:6px;transition:all 0.3s;">EN</a>
 </nav>
@@ -1076,9 +1101,93 @@ body {
   </div>
 </section>
 
+<!-- ===== AI CODING SECTION ===== -->
+<section class="projects-section" id="ai-coding">
+  <div class="projects-header"><h2>AI Coding 作品展示</h2><p>独立开发的AI产品原型</p></div>
+
+  <div class="project-block">
+    <div class="project-top">
+      <div class="demo-video-wrap">
+        <video src="demo-1.mp4" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="project-info">
+        <div class="project-title">食探 · FoodLens</div>
+        <div class="project-desc">定位：中国游客海外选餐厅决策工具</div>
+        <div class="project-desc" style="margin-top:8px;">
+          <a href="https://foodlens-sigma.vercel.app" target="_blank" style="color:#6EC5FF;text-decoration:none;border-bottom:1px solid rgba(110,197,255,0.3);">foodlens-sigma.vercel.app</a>
+          <span style="font-size:11px;color:rgba(255,255,255,0.3);margin-left:6px;">（需VPN）</span>
+        </div>
+        <div class="feature-tags" style="margin-top:24px;">
+          <a class="feature-tag" href="#panel-foodlens-pain"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>用户痛点</a>
+          <a class="feature-tag" href="#panel-foodlens-features"><span class="tag-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>核心功能</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FoodLens Pain Points Panel -->
+<div class="feature-panel" id="panel-foodlens-pain">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">食探 · FoodLens</div>
+    <div class="panel-title">用户痛点</div>
+    <div class="panel-desc">中国游客在海外选一顿饭，要在三件事上耗费精力：</div>
+    <div class="panel-flow">
+      <div class="panel-flow-steps" style="flex-direction:column;gap:12px;">
+        <div class="panel-flow-step">"谷歌地图上的高分餐厅，真的好吃吗？符合中国人口味吗？"</div>
+        <div class="panel-flow-step">"看看小红书评价吧——但是 App 之间切来切去好麻烦。"</div>
+        <div class="panel-flow-step">"小红书上信息也太多了，根本看不过来。"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FoodLens Features Panel -->
+<div class="feature-panel" id="panel-foodlens-features">
+  <a href="#_" class="feature-panel-close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+  <a href="#_" class="feature-panel-backdrop"></a>
+  <div class="feature-panel-inner">
+    <div class="panel-label">食探 · FoodLens</div>
+    <div class="panel-title">核心功能</div>
+    <div class="panel-desc">四大功能模块，一站式解决海外选餐厅难题。</div>
+    <div class="panel-flow">
+      <div class="panel-flow-title">功能架构</div>
+      <div class="panel-flow-steps">
+        <span class="panel-flow-step">就近推荐</span>
+        <span class="panel-flow-arrow"></span>
+        <span class="panel-flow-step">双维度评分</span>
+        <span class="panel-flow-arrow"></span>
+        <span class="panel-flow-step">口碑汇总</span>
+        <span class="panel-flow-arrow"></span>
+        <span class="panel-flow-step">信息展示</span>
+      </div>
+    </div>
+    <div style="margin-top:24px;display:flex;flex-direction:column;gap:16px;">
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px;">
+        <div style="font-size:13px;font-weight:600;color:#6EC5FF;margin-bottom:8px;">就近推荐</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;">根据实时位置和自定义半径，直接筛出附近高分餐厅。</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px;">
+        <div style="font-size:13px;font-weight:600;color:#6EC5FF;margin-bottom:8px;">双维度评分</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;">每家店同时给出"中国胃指数"和"本地指数"，一个回答"中国人吃了踩不踩雷"，一个回答"当地人是不是真的认可"。</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px;">
+        <div style="font-size:13px;font-weight:600;color:#6EC5FF;margin-bottom:8px;">全平台口碑汇总</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;">自动聚合 Trip、小红书等平台评价，提炼出好评、差评和避坑建议。</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px;">
+        <div style="font-size:13px;font-weight:600;color:#6EC5FF;margin-bottom:8px;">客观信息一站看全</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;">营业时间、人均价格、预订网址、照片直接展示。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ===== SECTION 3: PROJECTS ===== -->
 <section class="projects-section" id="projects">
-  <div class="projects-header"><h2>项目作品</h2><p>产品案例展示</p></div>
+  <div class="projects-header"><h2>工作项目展示</h2><p>产品案例展示</p></div>
 
   <!-- Project 1: 高德 -->
   <div class="project-block">
